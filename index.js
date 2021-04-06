@@ -1,9 +1,10 @@
+var PORT = 8000;
 var express = require('express');
 var socket = require('socket.io');
 
 //App setup
 var app = express();
-var server = app.listen(8000, function(){
+var server = app.listen(PORT, function(){
     console.log('Listening to request on port 8000');
 });
 
