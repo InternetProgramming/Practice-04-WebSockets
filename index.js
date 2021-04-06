@@ -12,11 +12,19 @@ app.use(express.static('public'));
 
 //Socket setup
 var io = socket(server);
-
 io.on('connection', (socket) => {
+
     console.log('Made socket connection', socket.id);
+
+    //Handle chat event
     socket.on('chat', function(data){
         //Send to the different clients
         io.sockets.emit('chat', data);
     });
+
+    // Handle typing event
+    socket.on('typing', function(data){
+        socket.broadcast.emit('typing', data);
+    });
+
 });
